@@ -1,0 +1,64 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+
+/**
+* @name CI Smarty
+* @copyright Dwayne Charrington, 2011.
+* @author Dwayne Charrington and other Github contributors
+* @license (DWYWALAYAM) 
+           Do What You Want As Long As You Attribute Me Licence
+* @version 1.2
+* @link http://ilikekillnerds.com
+*/
+
+class Manga extends CI_Controller {
+
+		/**
+     * Construct
+     * 初期化
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+/* Index*/
+    public function index(){
+      $this->create();
+    }
+/**
+     * つくる
+     *
+     */
+    public function create(){
+
+				// Initialize
+				// ---------------------------------------------				// ---------------------------------------------
+				// Main Process
+				// --------------------------------------------	                                // ---------------------------------------------
+				// Output HTML
+				// ---------------------------------------------
+        $this->parser->parse("manga_create.tpl");
+    }
+/* 一覧 */
+    public function detail($manga_id=null)
+    {
+				// ----------------------------------------------------
+				// Initialize
+				// ----------------------------------------------------
+				$data['manga_id'] = $manga_id;
+				
+				
+				// ----------------------------------------------------
+				// Main Process
+				// ----------------------------------------------------
+				// 漫画情報をDBから取得
+				$data['arrManga'] = "";
+				
+				
+				// ----------------------------------------------------
+				// Output HTML
+				// ----------------------------------------------------
+        $this->parser->parse("manga_detail.tpl", $data);
+    }
+
+}

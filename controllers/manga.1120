@@ -21,7 +21,6 @@ class Manga extends CI_Controller {
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
 		$this->load->model('Bookmaster');
-		$this->load->model('Pagemaster');
     }
 
 
@@ -79,25 +78,12 @@ class Manga extends CI_Controller {
 				// 登録
 				$this->Bookmaster->insert_book_master();
 				$book_id = $this->db->insert_id();
-				
-				// ===============================================================えちご修正↓
-				// 登録済み件数
-				$this->db->select('MAX(page_number) AS page_number');
-				$this->db->where('book_id', $book_id);
-				$query = $this->db->get('page_master');
-				$result = $query->result('array');
-				$page_number = $result[0]['page_number'];
-				if ($page_number == "") {
-					$page_number = 1;
-				}
-				// ===============================================================えちご修正↑
-				
+
 				$time = date("Y-m-d H:i:s");
 				$this->db->trans_start();
 					$data = array(
    					'book_id' => $book_id,
    					'file_name' =>  $book_id.'_',
-   					'page_number' =>  $page_number,	// えちご修正
    					'start_date' =>  $time,
 					);
 				$this->db->insert('page_master', $data);
@@ -137,9 +123,7 @@ class Manga extends CI_Controller {
      * 一覧
      *
      */
-    public function mangalist($genre_id=null){
-	$data['genre_id'] = $genre_id;
-
+    public function mangalist(){
 	$data['book_list_array'] = $this->Bookmaster->get_last_ten_book_master();
 /**
 	// ページネーションの設定
@@ -175,7 +159,6 @@ class Manga extends CI_Controller {
 		
 		// 漫画情報をDBから取得
 		$data['arrBook'] = $this->Bookmaster->get_last_ten_book_master();
-		$data['arrPage'] = $this->Pagemaster->get_last_ten_page_master();
 		
 		$this->parser->parse("manga_detail.tpl", $data);
     }
