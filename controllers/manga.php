@@ -1,5 +1,4 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-
 /**
 * @name CI Smarty
 * @copyright Dwayne Charrington, 2011.
@@ -10,11 +9,6 @@
 * @link http://ilikekillnerds.com
 */
 class Manga extends CI_Controller {
-
-	/**
-     * Construct
-     * 初期化
-     */
     public function __construct()
     {
 		parent::__construct();
@@ -24,11 +18,6 @@ class Manga extends CI_Controller {
 		$this->load->model('Pagemaster');
     }
 
-
-	/**
-     * Index
-     *
-     */
 	public function index(){
 		$this->create();
 	}
@@ -68,15 +57,26 @@ class Manga extends CI_Controller {
 								'label'   => '編集用パスワード',
 								'rules'   => 'required'
 						),
+						array(
+								'field'   => 'img-upload01',
+								'label'   => '画像',
+								'rules'   => 'required'
+						)
 				);
+
+		// 画像アップロード
+				$this->do_upload('img-upload01');
+				if ( ! $this->upload->do_upload('img-upload01')){
+				$data['error'] = array('error' => $this->upload->display_errors());
+
 				$this->form_validation->set_rules($config);
 				if ($this->form_validation->run() === FALSE){
 					$data['arrMsgErr'] = $this->form_validation->_error_array;
 					$this->parser->parse('manga_create.tpl', $data);
 					return;
 				}
-				
-				// 登録
+				}
+				// DB登録
 				$this->Bookmaster->insert_book_master();
 				$book_id = $this->db->insert_id();
 				
@@ -123,13 +123,6 @@ class Manga extends CI_Controller {
 		$config['allowed_types'] = 'gif|jpg|png';
 		
 		$this->load->library('upload', $config);
-		if ( ! $this->upload->do_upload('img-upload01')){
-			$data['error'] = array('error' => $this->upload->display_errors());
-			$this->parser->parse('manga_create_err.tpl', $data);
-		}else{
-			$data = array('upload_data' => $this->upload->data());
-			$this->parser->parse('manga_create_fin.tpl', $data);
-		}
 	}
 
 	
@@ -173,9 +166,15 @@ class Manga extends CI_Controller {
     {
 		$data['manga_id'] = $manga_id;
 		
+                $this->db->select('COUNT(*) AS page_count, book_id');
+		$this->db->where('book_id', $manga_id);
+		$query = $this->db->get('page_master');
+		$result = $query->result('array');
+		$page_count = $result[0]['page_count'];
+
 		// 漫画情報をDBから取得
-		$data['arrBook'] = $this->Bookmaster->get_last_ten_book_master();
-		$data['arrPage'] = $this->Pagemaster->get_last_ten_page_master();
+		$data['arrBook'] = $this->Bookmaster->get_book_detail($manga_id);
+		$data['arrPage'] = $this->Pagemaster->get_last_ten_page_master($page_count);
 		
 		$this->parser->parse("manga_detail.tpl", $data);
     }
