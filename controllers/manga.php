@@ -142,11 +142,22 @@ class Manga extends CI_Controller {
 /********* ジャンル一覧 *********/
     public function genrelist($genre_id=null){
 	if ($genre_id == "non"){
-	  $data['genre_id'] = '1';
+	  $genre_id = '1';
+	}elseif ($genre_id == "love"){
+	  $genre_id = '2';
+	}elseif ($genre_id == "otona"){
+	  $genre_id = '3';
+	}elseif ($genre_id == "saspense"){
+	  $genre_id = '4';
 	}elseif ($genre_id == "action"){
-	  $data['genre_id'] = '5';
+	  $genre_id = '5';
+	}elseif ($genre_id == "eat"){
+	  $genre_id = '6';
+	}elseif ($genre_id == "sports"){
+	  $genre_id = '7';
+	}elseif ($genre_id == "drama"){
+	  $genre_id = '8';
 	}
-
 
 	$data['book_list_array'] = $this->Bookmaster->get_book_list_genre($genre_id);
         $this->parser->parse("manga_genre.tpl", $data);
