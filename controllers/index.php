@@ -19,6 +19,7 @@ class Index extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
+	$this->load->model('Bookmaster');
     }
 
 
@@ -28,20 +29,8 @@ class Index extends CI_Controller {
      */
     public function index()
     {
-				// ----------------------------------------------------
-				// Initialize
-				// ----------------------------------------------------
-				
-				
-				// ----------------------------------------------------
-				// Main Process
-				// ----------------------------------------------------
-				
-
-				// ----------------------------------------------------
-				// Output HTML
-				// ----------------------------------------------------
-        $this->parser->parse("index.tpl");
+	$data['book_list_array'] = $this->Bookmaster->get_last_five_book_master();
+        $this->parser->parse("index.tpl", $data);
     }
 
 }

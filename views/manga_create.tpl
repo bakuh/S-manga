@@ -8,6 +8,7 @@
   <form name="form" action="/manga/create" method="POST" data-ajax="false">
     <div data-role="fieldcontain">
       <!--{if $arrMsgErr != ""}--><p class="msg error"><!--{foreach item=msg from=$arrMsgErr}--><!--{$msg}--><br /><!--{/foreach}--></p><!--{/if}-->
+
       <label for="tittle_name">★タイトル名(必須)</label>
       <input type="text" name="title_name" id="title_name" value="" placeholder="タイトル名"/><br>
       <label for="description">★内容(任意)</label>
