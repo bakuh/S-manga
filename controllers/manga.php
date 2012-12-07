@@ -4,17 +4,13 @@
 * @name CI Smarty
 * @copyright Dwayne Charrington, 2011.
 * @author Dwayne Charrington and other Github contributors
-* @license (DWYWALAYAM) 
-           Do What You Want As Long As You Attribute Me Licence
+* @license (DWYWALAYAM) Do What You Want As Long As You Attribute Me Licence
 * @version 1.2
 * @link http://ilikekillnerds.com
 */
 class Manga extends CI_Controller {
 
-	/**
-     * Construct
-     * 初期化
-     */
+/********* 初期化 *********/
     public function __construct()
     {
 		parent::__construct();
@@ -25,19 +21,8 @@ class Manga extends CI_Controller {
     }
 
 
-	/**
-     * Index
-     *
-     */
-	public function index(){
-		$this->create();
-	}
-    /**
-     * つくる
-     *
-     */
+/********* book登録 *********/
     public function create(){
-    	
     	switch ($this->input->post('mode')) {
     		// 登録処理
 			case 'REGIST':
@@ -80,7 +65,6 @@ class Manga extends CI_Controller {
 				$this->Bookmaster->insert_book_master();
 				$book_id = $this->db->insert_id();
 				
-				// ===============================================================えちご修正↓
 				// 登録済み件数
 				$this->db->select('MAX(page_number) AS page_number');// page_numberカラムの中の最大値を選択(1レコード)。
 				$this->db->where('book_id', $book_id);// book_idカラムの↑で登録したbook_id
@@ -90,14 +74,13 @@ class Manga extends CI_Controller {
 				if ($page_number == "") {
 					$page_number = 1;
 				}// 変数空だったら1入れる
-				// ===============================================================えちご修正↑
 				
 				$time = date("Y-m-d H:i:s");
 				$this->db->trans_start();
 					$data = array(
    					'book_id' => $book_id,
    					'file_name' =>  $book_id.'_',
-   					'page_number' =>  $page_number,	// えちご修正
+   					'page_number' =>  $page_number,
    					'start_date' =>  $time,
 					);
 				$this->db->insert('page_master', $data);
@@ -114,10 +97,7 @@ class Manga extends CI_Controller {
     }
 
     
-    /**
-     * ファイルアップロード
-     *
-     */
+/********* ファイルアップロード *********/
 	public function do_upload(){
 		$config['upload_path'] = '/var/www/html/www/img/sp/upload/';
 		$config['allowed_types'] = 'gif|jpg|png';
@@ -133,12 +113,9 @@ class Manga extends CI_Controller {
 	}
 
 	
-	/**
-     * 一覧
-     *
-     */
+/********* book一覧 *********/
     public function mangalist(){
-	$data['book_list_array'] = $this->Bookmaster->get_last_ten_book_master();
+	$data['book_list_array'] = $this->Bookmaster->get_book_list_ten();
 /**
 	// ページネーションの設定
 	$this->pagination->initialize(
@@ -161,12 +138,21 @@ class Manga extends CI_Controller {
 */
         $this->parser->parse("manga_list.tpl", $data);
     }
-    
-    
-    /**
-     * 詳細
-     *
-     */
+
+/********* ジャンル一覧 *********/
+    public function genrelist($genre_id=null){
+	if ($genre_id == "non"){
+	  $data['genre_id'] = '1';
+	}elseif ($genre_id == "action"){
+	  $data['genre_id'] = '5';
+	}
+
+
+	$data['book_list_array'] = $this->Bookmaster->get_book_list_genre($genre_id);
+        $this->parser->parse("manga_genre.tpl", $data);
+    }    
+
+/********* bookコンテンツ *********/
     public function detail($manga_id=null)
     {
 		$data['manga_id'] = $manga_id;

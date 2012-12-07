@@ -29,7 +29,7 @@ class Index extends CI_Controller {
      */
     public function index()
     {
-	$data['book_list_array'] = $this->Bookmaster->get_last_five_book_master();
+	$data['book_list_array'] = $this->Bookmaster->get_book_list_five();
         $this->parser->parse("index.tpl", $data);
     }
 
