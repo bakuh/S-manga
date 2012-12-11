@@ -99,12 +99,15 @@ class Manga extends CI_Controller {
     
 /********* ファイルアップロード *********/
 	public function do_upload(){
+		$book_id = $this->input->post('book');
+		$file_count = $this->Pagemaster->get_page_count($book_id);
+
 		$config['upload_path'] = '/var/www/html/www/img/sp/upload/';
 		$config['allowed_types'] = 'gif|jpg|png';
-		$config['file_name'] = '1';
-		$config['overwrite'] = 'FALSE';
+		$config['file_name'] = $book_id.'_'.$file_count;
+		$config['overwrite'] = FALSE;
 		$config['max_size'] = '0';
-		
+
 		$this->load->library('upload', $config);
 		if ( ! $this->upload->do_upload('img-upload01')){
 			$data['error'] = array('error' => $this->upload->display_errors());
@@ -115,7 +118,19 @@ class Manga extends CI_Controller {
 		}
 	}
 
-	
+/********* 画像処理 *********/
+	public function process_img(){
+		$config['image_library'] = 'gd2';
+		$config['source_image']	= '/var/www/html/www/img/sp/upload/';
+		$config['create_thumb'] = TRUE;
+		$config['maintain_ratio'] = TRUE;
+		$config['width']	 = 80;
+		$config['height']	= 80;
+
+		$this->load->library('image_lib', $config); 
+
+		$this->image_lib->resize();
+	}
 /********* book一覧 *********/
     public function mangalist(){
 	$data['book_list_array'] = $this->Bookmaster->get_book_list_ten();
@@ -158,7 +173,7 @@ class Manga extends CI_Controller {
 	  $genre_id = '6';
 	}elseif ($genre_id == "sports"){
 	  $genre_id = '7';
-	}elseif ($genre_id == "drama"){
+	}elseif ($genre_id == "dorama"){
 	  $genre_id = '8';
 	}
 

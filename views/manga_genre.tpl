@@ -58,6 +58,7 @@
 
 
 
+
 <ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="タイトル検索" data-dividertheme="a"> 
  <li data-role="list-divider">公開中の作品一覧</li>
 <!--{foreach from=$book_list_array item=book_item}-->

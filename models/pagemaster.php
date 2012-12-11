@@ -12,16 +12,21 @@ class Pagemaster extends CI_Model {
         parent::__construct();
     }
     
+    function get_page_count($manga_id){
+	$this->db->select('book_id');
+	$this->db->where('book_id', $manga_id);
+	$this->db->get('page_master');
+	$query = $this->db->count_all_results();
+	return $query->result();
+    }
+
+	function get_last_ten_page_master($manga_id){
+	$this->db->where('book_id', $manga_id);
+	$query = $this->db->get('page_master', 10);
+	return $query->result('array');
+    }
     
-	function get_last_ten_page_master()
-	{
-		$query = $this->db->get('page_master', 10);
-		return $query->result('array');
-	}
-    
-    
-    function insert_page_master()
-    {
+    function insert_page_master(){
         $this->page_number 	= $this->upload->data('page_number');
         $this->file_name 	= $this->upload->data('file_name');
         $this->update_date     = $this->upload->data('update_date', TRUE);
@@ -30,8 +35,7 @@ class Pagemaster extends CI_Model {
     }
     
 	
-	function update_page_master()
-	{
+	function update_page_master(){
 		$this->title_name 	= $this->input->post('title_name');
         $this->description 	= $this->input->post('description');
         $this->create_style = $this->input->post('create_style', TRUE);

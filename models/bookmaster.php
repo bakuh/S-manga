@@ -21,6 +21,21 @@ class Bookmaster extends CI_Model {
     }
 
 /********* GET *********/
+	function get_book_id($manga_id)
+	{
+		$this->db->select('book_id');
+		$this->db->where('book_id', $manga_id);
+		$query = $this->db->get('book_master');
+		return $query->result('array');
+	}
+
+	function get_file_count($manga_id)
+	{
+		$this->db->where('book_id', $manga_id);
+		$this->db->get('page_master');
+		$query = $this->db->count_all_results();
+		return $query->result('array');
+	}
 
 	function get_book_detail($manga_id)
 	{

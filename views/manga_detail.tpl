@@ -2,7 +2,7 @@
 <!--{include file="inc/header_inc.tpl"}-->
 
 <div data-role="content">
-
+<!--{$arrBook.genre_id}-->
 <!--{foreach from=$arrBook item=book_item}-->
   <!--{if $book_item.genre_id == "01"}-->
   <div class="box non">
@@ -76,6 +76,7 @@
   <form name="form" action="/manga/do_upload" method="POST" ENCTYPE="MULTIPART/FORM-DATA" data-ajax="false">
     <label for="img-upload01">★画像(必須)<br>※最低1ページはUPしてください。</label>
     <input type="file" name="img-upload01"/>
+    <input type="hidden" name="book" value="<!--{foreach from=$arrBook item=book_item}--><!--{$book_item.book_id}--><!--{/foreach}-->" />
     <input type="submit" value="作成する!!"/>
   </form>
 
