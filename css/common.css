@@ -97,6 +97,16 @@ h3 {
 /* ========================*/
 /* common */
 /* ========================*/
+.aside-btn {
+  height: 35px;
+  width: 40px;
+}
+
+.aside-btn-position {
+  margin: -33px 0 -7px;
+  text-align: right;
+}
+
 .box {
   color: #fff;
   display: block;

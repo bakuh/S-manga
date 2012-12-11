@@ -101,6 +101,9 @@ class Manga extends CI_Controller {
 	public function do_upload(){
 		$config['upload_path'] = '/var/www/html/www/img/sp/upload/';
 		$config['allowed_types'] = 'gif|jpg|png';
+		$config['file_name'] = '1';
+		$config['overwrite'] = 'FALSE';
+		$config['max_size'] = '0';
 		
 		$this->load->library('upload', $config);
 		if ( ! $this->upload->do_upload('img-upload01')){
