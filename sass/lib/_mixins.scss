@@ -1,0 +1,15 @@
+@mixin border-radius($property-value, $property-type: shorthand) {
+    // [NOTE]
+    // Firefox3.6以下のtopleftやbottomrightなどの
+    // 1コーナーのみを指定する記述には対応していません。
+    //
+    $property: border-radius;
+    @if $property-type != shorthand {
+        $property: border-#{$property-type}-radius;
+        // e.g. 'top-left', 'bottom-right'
+    }
+    // OUTPUT
+    @if $use-prefix-webkit { -webkit-#{$property}: #{$property-value}; }
+    @if $use-prefix-moz { -moz-#{$property}: #{$property-value}; }
+    #{$property}: #{$property-value};
+}
