@@ -51,9 +51,9 @@
         <li><a href="/manga/genrelist/dorama" data-theme="a" data-icon="dorama"><span class="font-nav">人間ドラマ<span></a></li>
 <!--{/if}-->
 <!--{if $smarty.server.REQUEST_URI == "/manga/genrelist/non"}-->
-        <li><a href="#" data-icon="faq" data-theme="a" class="ui-btn-active"><span class="font-nav">ノンジャンル<span></a></li>
+        <li><a href="#" data-icon="non" data-theme="a" class="ui-btn-active"><span class="font-nav">ノンジャンル<span></a></li>
 <!--{else}-->
-        <li><a href="/manga/genrelist/non" data-theme="a" data-icon="faq"><span class="font-nav">ノンジャンル<span></a></li>
+        <li><a href="/manga/genrelist/non" data-theme="a" data-icon="non"><span class="font-nav">ノンジャンル<span></a></li>
 <!--{/if}-->
 </ul>
 </nav>

@@ -29,6 +29,11 @@
   <a href="#" data-rel="back" data-role="button" data-theme="c" data-icon="delete" class="ui-btn-right">Close</a>
   <img src="/img/sp/pop_menu.png" alt="メニュー">
     <nav class="ui-grid-c">
+	<div class="ui-block-a"><a href="/" data-role="button" data-icon="faq" data-iconpos="top"><span class="sm-btn">FAQ</span></a></div>
+	<div class="ui-block-b"><a href="/" data-role="button" data-icon="facebook" data-iconpos="top"><span class="sm-btn">facebook</span></a></div>
+	<div class="ui-block-c"><a href="/" data-role="button" data-icon="twitter" data-iconpos="top"><span class="sm-btn">twitter</span></a></div>
+	<div class="ui-block-d"><a href="/" data-role="button" data-icon="line" data-iconpos="top"><span class="sm-btn">LINE</span></a></div>
+
 	<div class="ui-block-a"><a href="/" data-role="button" data-icon="action" data-iconpos="top"><span class="sm-btn">アクション</span></a></div>
 	<div class="ui-block-b"><a href="/" data-role="button" data-icon="search" data-iconpos="top"><span class="sm-btn">サスペンス</span></a></div>
 	<div class="ui-block-c"><a href="/" data-role="button" data-icon="love" data-iconpos="top"><span class="sm-btn">恋愛</span></a></div>
@@ -36,7 +41,7 @@
 	<div class="ui-block-a"><a href="/" data-role="button" data-icon="eat" data-iconpos="top"><span class="sm-btn">グルメ</span></a></div>
 	<div class="ui-block-b"><a href="/" data-role="button" data-icon="sports" data-iconpos="top"><span class="sm-btn">スポーツ</span></a></div>
 	<div class="ui-block-c"><a href="/" data-role="button" data-icon="dorama" data-iconpos="top"><span class="sm-btn">人間ドラマ</span></a></div>
-	<div class="ui-block-d"><a href="/" data-role="button" data-icon="faq" data-iconpos="top"><span class="sm-btn">ノンジャンル</span></a></div>
+	<div class="ui-block-d"><a href="/" data-role="button" data-icon="non" data-iconpos="top"><span class="sm-btn">ノンジャンル</span></a></div>
     </nav>
 </div>
 

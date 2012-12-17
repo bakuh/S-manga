@@ -1,5 +1,5 @@
 <body>
-<div data-role="page" data-theme="b" <!--{if $smarty.server.REQUEST_URI == "/manga/detail/54"}-->id="pg-gallery"<!--{/if}-->>
+<div data-role="page" data-theme="b">
 <header data-role="header" data-theme="a" class="center">
 
 <div id="fb-root"></div>

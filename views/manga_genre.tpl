@@ -1,12 +1,15 @@
 <!--{include file="inc/head_inc.tpl"}-->
 <!--{include file="inc/header_inc.tpl"}-->
 <div data-role="content" class="padding-off">
+<!--{include file="inc/menu_list_inc.tpl"}-->
 
-<ul data-role="listview" data-dividertheme="b" style="margin:0;">
-<li data-role="list-divider"><span class="font-divider">漫画</span>ジャンル (○･н･)v</li>
-</ul>
-    <nav data-role="navbar" data-theme="c">
-      <ul>
+<section id="main-contents">
+<ul data-role="listview" data-dividertheme="b" class="ganre-menu-adjust">
+<li data-role="list-divider"><span class="font-divider">漫画</span>ジャンル</li>
+
+
+<nav data-role="navbar" data-theme="c">
+<ul>
 <!--{if $smarty.server.REQUEST_URI == "/manga/genrelist/love"}-->
         <li><a href="#" data-icon="love" data-theme="a" class="ui-btn-active"><span class="font-nav">恋愛<span></a></li>
 <!--{else}-->
@@ -27,11 +30,11 @@
 <!--{else}-->
         <li><a href="/manga/genrelist/otona" data-theme="a" data-icon="otona"><span class="font-nav">オトナ</a></li>
 <!--{/if}-->
+</ul>
+</nav>
 
-      </ul>
-    </nav>
-    <nav data-role="navbar" data-theme="c" class="nav-margin">
-      <ul>
+<nav data-role="navbar" data-theme="c">
+<ul>
 <!--{if $smarty.server.REQUEST_URI == "/manga/genrelist/eat"}-->
         <li><a href="#" data-icon="eat" data-theme="a" class="ui-btn-active"><span class="font-nav">グルメ<span></a></li>
 <!--{else}-->
@@ -48,15 +51,13 @@
         <li><a href="/manga/genrelist/dorama" data-theme="a" data-icon="dorama"><span class="font-nav">人間ドラマ<span></a></li>
 <!--{/if}-->
 <!--{if $smarty.server.REQUEST_URI == "/manga/genrelist/non"}-->
-        <li><a href="#" data-icon="faq" data-theme="a" class="ui-btn-active"><span class="font-nav">ノンジャンル<span></a></li>
+        <li><a href="#" data-icon="non" data-theme="a" class="ui-btn-active"><span class="font-nav">ノンジャンル<span></a></li>
 <!--{else}-->
-        <li><a href="/manga/genrelist/non" data-theme="a" data-icon="faq"><span class="font-nav">ノンジャンル<span></a></li>
+        <li><a href="/manga/genrelist/non" data-theme="a" data-icon="non"><span class="font-nav">ノンジャンル<span></a></li>
 <!--{/if}-->
-
-      </ul>
-    </nav>
-
-
+</ul>
+</nav>
+</ul>
 
 
 <ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="タイトル検索" data-dividertheme="a"> 
@@ -94,6 +95,8 @@
 <!--{/foreach}-->
 </ul>
 
-</div><!--/data-role="content"-->
 
+</section><!--/main-contents-->
+<!--{include file="inc/menu_info_inc.tpl"}-->
+</div><!--/data-role="content"-->
 <!--{include file="inc/footer_inc.tpl"}-->
