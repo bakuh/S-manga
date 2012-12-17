@@ -1,7 +1,7 @@
 ﻿<footer data-role="footer" data-theme="c" data-position="fixed">
 
-    <nav data-role="navbar" data-theme="c">
-      <ul>
+<nav data-role="navbar" data-theme="c">
+  <ul>
 <!--{if $smarty.server.REQUEST_URI == "/"}-->
         <li><a href="/" data-icon="home" class="ui-btn-active"><span class="font-nav">ホーム</span></a></li>
 <!--{else}-->
@@ -22,13 +22,13 @@
 <!--{else}-->
         <li><a href="#socialmanga-menu" data-rel="popup" data-icon="menu"><span class="font-nav">メニュー</span></a></li>
 <!--{/if}-->
+  </ul>
+</nav>
 
-      </ul>
-    </nav>
-    <div data-role="popup" id="socialmanga-menu">
-<a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" class="ui-btn-right">Close</a>      <ul data-role="listview" data-theme="d" data-dividertheme="i">
-<img src="/img/sp/pop_menu.png" alt="メニュー">
-<nav class="ui-grid-c">
+<div data-role="popup" id="socialmanga-menu">
+  <a href="#" data-rel="back" data-role="button" data-theme="c" data-icon="delete" class="ui-btn-right">Close</a>
+  <img src="/img/sp/pop_menu.png" alt="メニュー">
+    <nav class="ui-grid-c">
 	<div class="ui-block-a"><a href="/" data-role="button" data-icon="action" data-iconpos="top"><span class="sm-btn">アクション</span></a></div>
 	<div class="ui-block-b"><a href="/" data-role="button" data-icon="search" data-iconpos="top"><span class="sm-btn">サスペンス</span></a></div>
 	<div class="ui-block-c"><a href="/" data-role="button" data-icon="love" data-iconpos="top"><span class="sm-btn">恋愛</span></a></div>
@@ -37,11 +37,10 @@
 	<div class="ui-block-b"><a href="/" data-role="button" data-icon="sports" data-iconpos="top"><span class="sm-btn">スポーツ</span></a></div>
 	<div class="ui-block-c"><a href="/" data-role="button" data-icon="dorama" data-iconpos="top"><span class="sm-btn">人間ドラマ</span></a></div>
 	<div class="ui-block-d"><a href="/" data-role="button" data-icon="faq" data-iconpos="top"><span class="sm-btn">ノンジャンル</span></a></div>
+    </nav>
+</div>
 
-</nav>
-    </div>
 </footer><!--/data-role="footer"-->
-
 </div><!--/data-role="page"-->
 
 <script type="text/javascript">

@@ -1,6 +1,5 @@
 <!--{include file="inc/head_inc.tpl"}-->
 <!--{include file="inc/header_inc.tpl"}-->
-
 <div data-role="content">
 <!--{$arrBook.genre_id}-->
 <!--{foreach from=$arrBook item=book_item}-->
@@ -72,6 +71,20 @@
 <!--{foreachelse}-->
 <p>1ページも投稿されていません…。<br>ぺこ <(＿ ＿)></p>
 <!--{/foreach}-->
+
+<section id="pg-gallery">
+<ul id="Gallery" class="gallery">
+  <li><a href="/img/sp/upload/1_1.jpg" data-ajax="false"><img src="/img/sp/upload/1_1.jpg" alt="Kamui 001" /></a></li>  
+  <li><a href="/img/sp/upload/2_1.jpg" data-ajax="false"><img src="/img/sp/upload/2_1.jpg" alt="Kamui 002" /></a></li>  
+  <li><a href="/img/sp/upload/2_2.jpg" data-ajax="false"><img src="/img/sp/upload/2_2.jpg" alt="Kamui 003" /></a></li>  
+  <li><a href="/img/sp/upload/48_1.jpg" data-ajax="false"><img src="/img/sp/upload/48_1.jpg" alt="Kamui 004" /></a></li>  
+  <li><a href="/img/sp/upload/48_3.jpg" data-ajax="false"><img src="/img/sp/upload/48_2.jpg" alt="Kamui 005" /></a></li>  
+  <li><a href="/img/sp/upload/54_1.jpg" data-ajax="false"><img src="/img/sp/upload/54_1.jpg" alt="Kamui 006" /></a></li>  
+  <li><a href="/img/sp/upload/54_2.jpg" data-ajax="false"><img src="/img/sp/upload/54_2.jpg" alt="Kamui 007" /></a></li>  
+  <li><a href="/img/sp/upload/54_3.jpg" data-ajax="false"><img src="/img/sp/upload/54_3.jpg" alt="Kamui 008" /></a></li>  
+  <li><a href="/img/sp/upload/2_1.jpg" data-ajax="false"><img src="/img/sp/upload/2_1.jpg" alt="Kamui 009" /></a></li>  
+</ul>
+</section>
 
   <form name="form" action="/manga/do_upload" method="POST" ENCTYPE="MULTIPART/FORM-DATA" data-ajax="false">
     <label for="img-upload01">★画像(必須)<br>※最低1ページはUPしてください。</label>
