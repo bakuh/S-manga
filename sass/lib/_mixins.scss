@@ -1,15 +1,22 @@
 @mixin border-radius($property-value, $property-type: shorthand) {
-    // [NOTE]
-    // Firefox3.6以下のtopleftやbottomrightなどの
-    // 1コーナーのみを指定する記述には対応していません。
-    //
     $property: border-radius;
     @if $property-type != shorthand {
         $property: border-#{$property-type}-radius;
-        // e.g. 'top-left', 'bottom-right'
     }
     // OUTPUT
     @if $use-prefix-webkit { -webkit-#{$property}: #{$property-value}; }
     @if $use-prefix-moz { -moz-#{$property}: #{$property-value}; }
+    @if $use-prefix-ms { -ms-#{$property}: #{$property-value}; }
+    @if $use-prefix-o { -o-#{$property}: #{$property-value}; }
     #{$property}: #{$property-value};
+}
+
+@mixin gradient($property-start, $property-stop) {
+    @if $use-prefix-webkit {
+      background: -webkit-gradient(linear, left top, left bottom, from(#{$property-start}), to(#{$property-stop}));
+    }
+    @if $use-prefix-moz {
+      background: -moz-linear-gradient(top, #{$property-start}, #{$property-stop});
+    }
+    border: 1px solid $property-start;
 }

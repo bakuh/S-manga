@@ -14,7 +14,6 @@
         </div><!-- fb float-center-content-->
       </div>
     </aside><!-- end .snsContainer-->
-
 </header><!--/data-role="header"-->
 
 
@@ -23,7 +22,7 @@
 <!--{foreach from=$arrBook item=book_item}-->
   <!--{if $book_item.genre_id == "01"}-->
   <div class="box non">
-    <h1><!--{$book_item.title_name}--></h1>
+    <span class="font-divider"><!--{$book_item.title_name}--></span>
     <aside class="aside-btn-position"><a href="/manga/genrelist/non" data-role="button" data-mini="true" data-iconpos="top" data-inline="true" data-theme="a" data-icon="faq" class="aside-btn"></a></aside>
   </div>
 
@@ -103,12 +102,30 @@
 </ul>
 
   <form name="form" action="/manga/do_upload" method="POST" ENCTYPE="MULTIPART/FORM-DATA" data-ajax="false">
-    <label for="img-upload01">★画像(必須)<br>※最低1ページはUPしてください。</label>
+    <label for="img-upload01">★ページを追加</label>
     <input type="file" name="img-upload01"/>
+    <input type="password" name="edit_pass" id="edit-pass" value="" maxlength="8" placeholder="編集用パスワード"/>
     <input type="hidden" name="book" value="<!--{foreach from=$arrBook item=book_item}--><!--{$book_item.book_id}--><!--{/foreach}-->" />
-    <input type="submit" value="作成する!!"/>
+    <input type="submit" value="ページを追加!!" data-theme="b"/>
   </form>
 
+  <a href="#edit-book-pass" data-rel="popup" data-role="button">本情報編集</a>
+
+
+
 </div><!--/padding-content -->
+
+<div data-role="popup" id="edit-book-pass">
+  <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" class="ui-btn-right">Close</a>
+  <p>編集パスワードを入力してください</p>
+  <form name="form" action="/manga/do_upload" method="POST" ENCTYPE="MULTIPART/FORM-DATA" data-ajax="false">
+    <label for="img-upload01">★まんが情報変更</label>
+    <input type="password" name="edit_pass" id="edit-pass" value="" maxlength="8" placeholder="編集用パスワード"/>
+    <input type="hidden" name="book" value="<!--{foreach from=$arrBook item=book_item}--><!--{$book_item.book_id}--><!--{/foreach}-->" />
+    <input type="submit" value="編集" data-theme="b"/>
+    <input type="submit" value="削除" data-theme="b"/>
+  </form>
+</div>
+
 </div><!--/data-role="content"-->
 <!--{include file="inc/footer_inc.tpl"}-->
