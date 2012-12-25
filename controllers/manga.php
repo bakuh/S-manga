@@ -134,26 +134,16 @@ class Manga extends CI_Controller {
 /********* book一覧 *********/
     public function mangalist(){
 	$data['book_list_array'] = $this->Bookmaster->get_book_list_ten();
-/**
+	$total_rows = $this->db->count_all('book_master');
 	// ページネーションの設定
-	$this->pagination->initialize(
-    	Array(
-        	'base_url' => '/manga/mangalist',
-        	'total_rows' => $this->Data->count('1=1'),
-        	'per_page' => $limit,
-        	'num_links' => 9,
-        	'first_link' => false,
-        	'last_link' => false,
-        	'prev_link' => '前へ',
-        	'next_link' => '次へ'
-    		)
-	); 
+	$this->load->library('pagination');
+	$config['base_url'] = 'http://49.212.143.101/manga/mangalist/';
+	$config['total_rows'] = $total_rows;
+	$config['per_page'] = 20; 
 
-	$data = Array(
-    	'items' => $items,
-    	'paginate' => $this->pagination->create_links()
-	);
-*/
+	$this->pagination->initialize($config);
+	$data['pagenation_array'] = $this->pagination->create_links();
+
         $this->parser->parse("manga_list.tpl", $data);
     }
 
@@ -182,8 +172,7 @@ class Manga extends CI_Controller {
     }    
 
 /********* bookコンテンツ *********/
-    public function detail($manga_id=null)
-    {
+    public function detail($manga_id=null){
 		$data['manga_id'] = $manga_id;
                 $this->db->select('COUNT(*) AS page_count, book_id');//book_idの数
 		$this->db->where('book_id', $manga_id);
@@ -198,7 +187,33 @@ class Manga extends CI_Controller {
 		$this->parser->parse("manga_detail.tpl", $data);
     }
     
-    
+/********* pageコンテンツ編集 *********/
+    public function page_edit(){
+		$book_id = $this->input->post('book');
+
+		switch ($this->input->post('page-edit')) {
+		case '削除する':
+		  $this->db->where('book_id', $manga_id);
+		  $query = $this->db->get('page_master');
+		  $this->Pagemaster->update_page_master();//該当ページ削除Pagemasterに適当なメソッド作る
+		  $this->parser->parse("compleate.tpl", $data);
+		  break;
+
+		case '編集する':// ファイル上書き
+		  $page_id = $this->input->post('page_choice');
+		  $this->db->where('book_id', $book_id);//bookとpageを条件検索
+		  $this->db->where('page_id', $page_id);
+		  $query = $this->db->get('page_master');
+
+		  $this->load->do_upload();//アップロードメソッド読んでごにょごにょ
+		  
+		  $this->Pagemaster->update_page_master();//アップロード成功したらpagemaster上書き
+		  $this->parser->parse("compleate.tpl", $data);
+		  break;
+		}
+    }
+
+
     public function faq(){
         $this->parser->parse("faq.tpl");
     }

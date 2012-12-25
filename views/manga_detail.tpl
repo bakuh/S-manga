@@ -101,30 +101,59 @@
   <li><a href="/img/sp/upload/2_1.jpg" data-ajax="false"><img src="/img/sp/upload/2_1.jpg" alt="Kamui 009" /></a></li>  
 </ul>
 
+<section class="box-page-add">
   <form name="form" action="/manga/do_upload" method="POST" ENCTYPE="MULTIPART/FORM-DATA" data-ajax="false">
     <label for="img-upload01">★ページを追加</label>
     <input type="file" name="img-upload01"/>
-    <input type="password" name="edit_pass" id="edit-pass" value="" maxlength="8" placeholder="編集用パスワード"/>
     <input type="hidden" name="book" value="<!--{foreach from=$arrBook item=book_item}--><!--{$book_item.book_id}--><!--{/foreach}-->" />
-    <input type="submit" value="ページを追加!!" data-theme="b"/>
+    <input type="submit" value="ページを追加!!" data-theme="b" data-iconpos="left" data-icon="forward"/>
   </form>
+</section>
 
-  <a href="#edit-book-pass" data-rel="popup" data-role="button">本情報編集</a>
-
+<section class="box-manga-edit">
+  <p>漫画情報・ページの編集</p>
+  <a href="#edit-page-pass" data-rel="popup" data-role="button" data-iconpos="left" data-icon="gear">ページ上書き・削除</a>
+  <a href="#edit-book-pass" data-rel="popup" data-role="button" data-iconpos="left" data-icon="alert">漫画情報編集・削除</a>
+</section>
 
 
 </div><!--/padding-content -->
 
+<div data-role="popup" id="edit-page-pass">
+  <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" class="ui-btn-right">Close</a>
+    <section class="padding-content">
+      <p>★上書き・削除するページを選択してください。</p>
+      <form name="form" action="/manga/page_edit" method="POST" ENCTYPE="MULTIPART/FORM-DATA" data-ajax="false">
+        <select name="page_id" id="page-choice" data-theme="b">
+          <option value="01">ページ1</option>
+          <option value="02">ページ2</option>
+          <option value="03">ページ3</option>
+          <option value="04">ページ4</option>
+        </select>
+        <label for="img-upload01">★上書きする場合はファイルを選択してください。</label><br>
+        <input type="file" name="img-upload01"/>
+        <input type="hidden" name="book" value="<!--{foreach from=$arrBook item=book_item}--><!--{$book_item.book_id}--><!--{/foreach}-->" />
+          <div class="ui-grid-a">
+            <div class="ui-block-a"><input type="submit" value="上書きする" data-theme="a" data-iconpos="left" data-icon="gear"/></div>
+            <div class="ui-block-b"><input type="submit" value="削除する" data-theme="c" data-iconpos="left" data-icon="alert"/></div>
+          </div>
+      </form>
+    </section>
+</div>
+
 <div data-role="popup" id="edit-book-pass">
   <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" class="ui-btn-right">Close</a>
-  <p>編集パスワードを入力してください</p>
-  <form name="form" action="/manga/do_upload" method="POST" ENCTYPE="MULTIPART/FORM-DATA" data-ajax="false">
-    <label for="img-upload01">★まんが情報変更</label>
-    <input type="password" name="edit_pass" id="edit-pass" value="" maxlength="8" placeholder="編集用パスワード"/>
-    <input type="hidden" name="book" value="<!--{foreach from=$arrBook item=book_item}--><!--{$book_item.book_id}--><!--{/foreach}-->" />
-    <input type="submit" value="編集" data-theme="b"/>
-    <input type="submit" value="削除" data-theme="b"/>
-  </form>
+    <section class="padding-content">
+      <p>★編集パスワードを入力してください</p>
+        <form name="form" action="/manga/book_edit" method="POST" ENCTYPE="MULTIPART/FORM-DATA" data-ajax="false">
+          <input type="password" name="edit_pass" id="edit-pass" value="" maxlength="8" placeholder="編集用パスワード"/>
+          <input type="hidden" name="book" value="<!--{foreach from=$arrBook item=book_item}--><!--{$book_item.book_id}--><!--{/foreach}-->" />
+          <div class="ui-grid-a">
+            <div class="ui-block-a"><input type="submit" value="編集する" data-theme="a" data-iconpos="left" data-icon="gear"/></div>
+            <div class="ui-block-b"><input type="submit" value="削除する" data-theme="c" data-iconpos="left" data-icon="alert"/></div>
+          </div>
+       </form>
+    </section>
 </div>
 
 </div><!--/data-role="content"-->
