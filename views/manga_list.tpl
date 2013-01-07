@@ -4,10 +4,9 @@
 <!--{include file="inc/menu_list_inc.tpl"}-->
 
 <section id="main-contents">
-<ul data-role="listview" data-dividertheme="b" class="ganre-menu-adjust">
-<li data-role="list-divider"><span class="font-divider">漫画</span>ジャンル</li>
-
-
+<div class="box non genre-menu-adjust">
+　<span class="font-divider">漫画</span>ジャンル
+</div>
 <nav data-role="navbar" data-theme="c">
 <ul>
 <!--{if $smarty.server.REQUEST_URI == "/manga/genrelist/love"}-->
@@ -33,7 +32,7 @@
 </ul>
 </nav>
 
-<nav data-role="navbar" data-theme="c">
+<nav data-role="navbar" data-theme="c" class="nav-margin">
 <ul>
 <!--{if $smarty.server.REQUEST_URI == "/manga/genrelist/eat"}-->
         <li><a href="#" data-icon="eat" data-theme="a" class="ui-btn-active"><span class="font-nav">グルメ<span></a></li>
@@ -57,9 +56,8 @@
 <!--{/if}-->
 </ul>
 </nav>
-</ul>
 
-<ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="タイトル検索" data-dividertheme="a" class="listview-margin"> 
+<ul data-role="listview" data-inset="true" data-dividertheme="a" data-filter="ture" data-filter-placeholder="タイトル検索" class="listview-margin"> 
  <li data-role="list-divider">公開中の作品一覧</li>
 <!--{foreach from=$book_list_array item=book_item}-->
  <li data-theme="b">
@@ -75,7 +73,7 @@
 <!--{elseif $book_item.genre_id == "3"}-->
  <p class="ui-li-aside"><span class="box otona genre-aside">オトナ</span></p>
 <!--{elseif $book_item.genre_id == "4"}-->
- <p class="ui-li-aside"><span class="box suspense genre-aside">サスペンス</span></p>
+ <p class="ui-li-aside"><span class="box saspense genre-aside">サスペンス</span></p>
 <!--{elseif $book_item.genre_id == "5"}-->
  <p class="ui-li-aside"><span class="box action genre-aside">アクション</span></p>
 <!--{elseif $book_item.genre_id == "6"}-->

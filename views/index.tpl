@@ -76,7 +76,7 @@
   <!--{elseif $book_item.genre_id == "3"}-->
   <p class="ui-li-aside"><span class="box otona genre-aside">オトナ</span></p>
   <!--{elseif $book_item.genre_id == "4"}-->
-  <p class="ui-li-aside"><span class="box suspense genre-aside">サスペンス</span></p>
+  <p class="ui-li-aside"><span class="box saspense genre-aside">サスペンス</span></p>
   <!--{elseif $book_item.genre_id == "5"}-->
   <p class="ui-li-aside"><span class="box action genre-aside">アクション</span></p>
   <!--{elseif $book_item.genre_id == "6"}-->
@@ -84,7 +84,7 @@
   <!--{elseif $book_item.genre_id == "7"}-->
   <p class="ui-li-aside"><span class="box sports genre-aside">スポーツ</span></p>
   <!--{elseif $book_item.genre_id == "8"}-->
-  <p class="ui-li-aside"><span class="box dorama genre-aside">ヒューマンドラマ</span></p>
+  <p class="ui-li-aside"><span class="box dorama genre-aside">人間ドラマ</span></p>
   <!--{else}-->
   <!--{/if}-->
   </a>

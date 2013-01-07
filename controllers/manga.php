@@ -188,31 +188,32 @@ class Manga extends CI_Controller {
     }
     
 /********* pageコンテンツ編集 *********/
-    public function page_edit(){
-		$book_id = $this->input->post('book');
+  public function page_edit(){
+    $book_id = $this->input->post('book');
+    $page_id = $this->input->post('page_choice');
 
-		switch ($this->input->post('page-edit')) {
-		case '削除する':
-		  $this->db->where('book_id', $manga_id);
-		  $query = $this->db->get('page_master');
-		  $this->Pagemaster->update_page_master();//該当ページ削除Pagemasterに適当なメソッド作る
-		  $this->parser->parse("compleate.tpl", $data);
-		  break;
+    if ($page_id == "") {
+        $this->parser->parse("err_page_edit.tpl");
+    }else{
+      switch ($this->input->post('page-edit')) {
+        case '削除する':
+        $this->Pagemaster->del_page_master($book_id, $page_id);
+        $this->parser->parse("compleate_page_edit.tpl", $data);
+        break;
 
-		case '編集する':// ファイル上書き
-		  $page_id = $this->input->post('page_choice');
-		  $this->db->where('book_id', $book_id);//bookとpageを条件検索
-		  $this->db->where('page_id', $page_id);
-		  $query = $this->db->get('page_master');
+        case '編集する':// ファイル上書き
+        $this->db->where('book_id', $book_id);//bookとpageを条件検索
+        $this->db->where('page_id', $page_id);
+        $query = $this->db->get('page_master');
 
-		  $this->load->do_upload();//アップロードメソッド読んでごにょごにょ
-		  
-		  $this->Pagemaster->update_page_master();//アップロード成功したらpagemaster上書き
-		  $this->parser->parse("compleate.tpl", $data);
-		  break;
-		}
+        $this->load->do_upload();//アップロードメソッド読んでごにょごにょ
+
+        $this->Pagemaster->update_page_master();//アップロード成功したらpagemaster上書き
+        $this->parser->parse("compleate.tpl", $data);
+        break;
+      }
     }
-
+  }
 
     public function faq(){
         $this->parser->parse("faq.tpl");
