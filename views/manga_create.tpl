@@ -13,16 +13,10 @@
 
       <label for="tittle_name">★タイトル名(必須)</label>
       <input type="text" name="title_name" id="title_name" value="" placeholder="タイトル名"/><br>
-      <label for="description">★内容(任意)</label>
+      <label for="description">★内容(必須)</label>
       <input type="text" name="description" id="description" value="" placeholder="内容"/>
     </div>
-    <fieldset data-role="controlgroup">
-    <legend>★制作スタイル(必須)</legend>
-    <input type="radio" name="create_style" id="create-style01" value="0" checked="checked" data-theme="c"/>
-    <label for="create-style01">みんなで作る</label>
-    <input type="radio" name="create_style" id="create-style02" value="1" data-theme="c"/>
-    <label for="create-style02">グループ又は一人で作る</label>
-    </fieldset>
+
     <label for="genre_id" data-theme="a">★ジャンル</label>
     <select name="genre_id" id="genre-choice">
       <option value="01">ノンジャンル</option>
@@ -34,8 +28,9 @@
       <option value="07">スポーツ</option>
       <option value="08">人間ドラマ</option>
     </select>
-    <label for="edit_pass">★編集pass</label>
+    <label for="edit_pass">★編集pass(任意)</label>
     <input type="password" name="edit_pass" id="edit-pass" value="" maxlength="8" placeholder="編集用パスワード"/>
+    <span>※グループ又は一人で作る場合は編集パスワードを設定して共有してください。</span>
 
     <label for="img-upload01">★画像(必須)<br>※最低1ページはUPしてください。</label>
     <input type="file" name="img-upload01"/>

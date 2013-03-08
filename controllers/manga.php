@@ -47,12 +47,7 @@ class Manga extends CI_Controller {
 								'field'   => 'genre_id',
 								'label'   => 'ジャンル',
 								'rules'   => 'required'
-						),
-						array(
-								'field'   => 'edit_pass',
-								'label'   => '編集用パスワード',
-								'rules'   => 'required'
-						),
+						)
 				);
 				$this->form_validation->set_rules($config);
 				if ($this->form_validation->run() === FALSE){
@@ -98,13 +93,15 @@ class Manga extends CI_Controller {
 
     
 /********* ファイルアップロード *********/
-	public function do_upload(){
+	public function do_upload($file_name){
 		$book_id = $this->input->post('book');
+		/***
 		$file_count = $this->Pagemaster->get_page_count($book_id);
+		**/
 
 		$config['upload_path'] = '/var/www/html/www/img/sp/upload/';
 		$config['allowed_types'] = 'gif|jpg|png';
-		$config['file_name'] = $book_id.'_'.$file_count;
+		$config['file_name'] = $file_name;
 		$config['overwrite'] = FALSE;
 		$config['max_size'] = '0';
 
@@ -174,7 +171,8 @@ class Manga extends CI_Controller {
 /********* bookコンテンツ *********/
     public function detail($manga_id=null){
 		$data['manga_id'] = $manga_id;
-                $this->db->select('COUNT(*) AS page_count, book_id');//book_idの数
+		
+        $this->db->select('COUNT(*) AS page_count, book_id');//book_idの数
 		$this->db->where('book_id', $manga_id);
 		$query = $this->db->get('page_master');
 		$result = $query->result('array');
@@ -186,7 +184,37 @@ class Manga extends CI_Controller {
 		
 		$this->parser->parse("manga_detail.tpl", $data);
     }
-    
+
+/********* bookコンテンツ編集 *********/
+  public function book_edit(){
+    $book_id = $this->input->post('book');
+    $post_pass = $this->input->post('edit_pass');//postされたパス
+    $edit_pass = $this->Bookmaster->get_edit_pass($book_id);//DBから編集パス取得
+
+    if ($post_pass <> $edit_pass) {
+        $this->parser->parse("err_book_edit.tpl");//パス間違ってたらエラーページへ。なんか常にtureになるっす
+    }else{
+      switch (true) {
+        case (isset($_POST['del']) and $_POST['del'] == "削除する" ):
+        $this->Bookmaster->del_book_master($book_id);//対象のbook削除
+        $this->Pagemaster->del_bookpages_page_master($book_id);//bookに紐づいたページ削除
+        $this->parser->parse("compleate_del_book.tpl");
+        break;
+
+        case (isset($_POST['edit']) and $_POST['edit'] == "編集する" ):
+        $this->db->where('book_id', $book_id);//bookとpageを条件検索
+        $this->db->where('page_id', $page_id);
+        $query = $this->db->get('page_master');
+
+        $this->do_upload($book_id."_");
+
+        $this->Pagemaster->update_page_master();//アップロード成功したらpagemaster上書き
+        $this->parser->parse("compleate.tpl", $data);
+        break;
+      }
+    }
+  }
+
 /********* pageコンテンツ編集 *********/
   public function page_edit(){
     $book_id = $this->input->post('book');
@@ -197,7 +225,7 @@ class Manga extends CI_Controller {
     }else{
       switch ($this->input->post('page-edit')) {
         case '削除する':
-        $this->Pagemaster->del_page_master($book_id, $page_id);
+        $this->Pagemaster->del_onlypage_master($book_id, $page_id);
         $this->parser->parse("compleate_page_edit.tpl", $data);
         break;
 
@@ -206,7 +234,7 @@ class Manga extends CI_Controller {
         $this->db->where('page_id', $page_id);
         $query = $this->db->get('page_master');
 
-        $this->load->do_upload();//アップロードメソッド読んでごにょごにょ
+        $this->do_upload($book_id."_");//画像アップ
 
         $this->Pagemaster->update_page_master();//アップロード成功したらpagemaster上書き
         $this->parser->parse("compleate.tpl", $data);
@@ -214,12 +242,18 @@ class Manga extends CI_Controller {
       }
     }
   }
+/********* pageコンテンツ追加 *********/
+  public function page_add(){
+    $book_id = $this->input->post('book');
+    $this->do_upload($book_id."_");//画像アップ⇒OK
+    $this->Pagemaster->insert_page_master($book_id);//画像アップ成功したらレコード追加⇒OK
+    $page_count = $this->Pagemaster->get_page_count($book_id);//タイトルのページ総数取得←これがうまくいかん
+    $this->Bookmaster->update_page_count($book_id, $page_count);//Bookmasterのpage_countと更新日をupdate
+  }
 
+/********* faq *********/
     public function faq(){
         $this->parser->parse("faq.tpl");
-    }
-    public function camp(){
-        $this->parser->parse("camp.tpl");
     }
 
 }

@@ -57,13 +57,14 @@
 </ul>
 </nav>
 
+<div class="padding-content">
 <ul data-role="listview" data-inset="true" data-dividertheme="a" data-filter="ture" data-filter-placeholder="タイトル検索" class="listview-margin"> 
  <li data-role="list-divider">公開中の作品一覧</li>
 <!--{foreach from=$book_list_array item=book_item}-->
  <li data-theme="b">
  <a href="/manga/detail/<!--{$book_item.book_id}-->">
 <img src="/img/sp/upload/1_1.jpg" alt="てすと">
- <h3><!--{$book_item.title_name}--></h3><span class="ui-li-count"><!--{$book_item.page_no}--></span>
+ <h3><!--{$book_item.title_name}--></h3><span class="ui-li-count"><!--{$book_item.page_count}--></span>
  <p class="new-line"><!--{$book_item.description}--></p>
 
 <!--{if $book_item.genre_id == "1"}-->
@@ -92,6 +93,7 @@
 <!--{/foreach}-->
 </ul>
 
+</div><!--padding-content-->
 </section><!--/main-contents-->
 <!--{include file="inc/menu_info_inc.tpl"}-->
 </div><!--/data-role="content"-->

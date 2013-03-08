@@ -1,0 +1,117 @@
+h1,h2,h3,h4 {
+  font-weight: bold;
+  margin:0;
+}
+
+h1,h3 {
+  font-size: $font-large;
+}
+
+a {
+  @include link-colors(#5151cc, blue, white, #333, white);
+  text-decoration:none;
+  -webkit-tap-highlight-color:rgba(255, 0, 0, 0.40);
+}
+
+//////base class
+
+.block-center {
+  margin: 0 auto;
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  height: 0;
+  visibility: hidden;
+}
+
+.disp-line {
+  display: inline;
+}
+
+.disp-block {
+  display: block;
+}
+
+.float-l {
+  @include float-left;
+}
+
+.float-r {
+  @include float-right;
+}
+
+.font-divider {
+  font-size: $font-large;
+}
+
+.font-small {
+  font-size: $font-small;
+}
+
+.font-xsmall {
+  font-size: $font-xsmall;
+}
+
+.margin-all {
+  margin: $default-margin;
+}
+
+.margin-off {
+  margin: 0!important;
+}
+
+.margin-lr {
+  margin: 0 $default-margin;
+}
+
+.margin-tb {
+  margin: $default-margin 0;
+}
+
+.over-hide {
+  overflow: hidden!important;
+}
+
+%padding-margin-off {
+  padding: 0;
+  margin: 0;
+}
+
+.padding-all {
+  padding: $default-padding;
+}
+
+.padding-off {
+  padding: 0;
+}
+
+.padding-lr {
+  padding: 0 $default-padding;
+}
+
+.padding-tb {
+  padding: $default-padding 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-deco {
+  text-decoration: underline;
+}
+
+.relative {
+    position:relative;
+}

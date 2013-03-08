@@ -1,5 +1,13 @@
-@import 'lib/mixins';
-@import 'lib/jqm';
-@import 'lib/jqm-theme';
+@import 'compass';
+
+@import 'lib/jqm1_3_0';
+@import 'lib/jqm-theme1_3_0';
+
+@include global-reset;
+@import 'core/mixins';
+@import 'core/setting';
+@import 'core/base';
+@import 'core/module';
+
 @import 's-manga';
 

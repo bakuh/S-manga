@@ -1,6 +1,7 @@
 <!--{include file="inc/head_inc.tpl"}-->
 
 <body>
+<!-- {assign var="url" value=http://manga.eee-ch.net} -->
 <div data-role="page" data-theme="b" id="pg-gallery">
 <header data-role="header" data-theme="a" class="center">
 <div id="fb-root"></div>
@@ -8,9 +9,9 @@
    <aside class="float-center">
     <div class="float-center-wrap">
       <div class="float-center-content">
-        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://49.212.143.101/index.html" data-text="" data-hashtags="socialcreate"></a>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-url="<!--{$url}--><!--{$smarty.server.REQUEST_URI}-->" data-text="" data-hashtags="socialcreate"></a>
       </div><!-- tw float-center-content-->
-      <div class="fb-like float-center-content" data-href="http://49.212.143.101/" data-send="false" data-layout="button_count" data-width="30" data-show-faces="false" data-font="verdana">
+      <div class="fb-like float-center-content" data-href="<!--{$url}--><!--{$smarty.server.REQUEST_URI}-->" data-send="false" data-layout="button_count" data-width="30" data-show-faces="false" data-font="verdana">
         </div><!-- fb float-center-content-->
       </div>
     </aside><!-- end .snsContainer-->
@@ -19,55 +20,56 @@
 
 <div data-role="content">
 <!--{include file="inc/menu_list_inc.tpl"}-->
-
 <section id="main-contents">
+
+
 <!--{$arrBook.genre_id}-->
 <!--{foreach from=$arrBook item=book_item}-->
   <!--{if $book_item.genre_id == "01"}-->
-  <div class="box non genre-menu-adjust">
+  <div class="box non ganre-menu-adjust">
     <span class="font-divider"><!--{$book_item.title_name}--></span>
     <aside class="aside-btn-position"><a href="/manga/genrelist/non" data-role="button" data-mini="true" data-iconpos="top" data-inline="true" data-theme="a" data-icon="faq" class="aside-btn"></a></aside>
   </div>
 
   <!--{elseif $book_item.genre_id == "02"}-->
-  <div class="box love genre-menu-adjust">
+  <div class="box love ganre-menu-adjust">
     <span class="font-divider"><!--{$book_item.title_name}--></span>
     <aside class="aside-btn-position"><a href="/manga/genrelist/love" data-role="button" data-mini="true" data-iconpos="top" data-inline="true" data-theme="a" data-icon="love" class="aside-btn"></a></aside>
   </div>
 
 
   <!--{elseif $book_item.genre_id == "05"}-->
-  <div class="box action genre-menu-adjust">
+  <div class="box action ganre-menu-adjust">
     <span class="font-divider"><!--{$book_item.title_name}--></span>
     <aside class="aside-btn-position"><a href="/manga/genrelist/action" data-role="button" data-mini="true" data-iconpos="top" data-inline="true" data-theme="a" data-icon="action" class="aside-btn"></a></aside>
   </div>
 
   <!--{elseif $book_item.genre_id == "04"}-->
-  <div class="box saspense genre-menu-adjust">
+  <div class="box saspense ganre-menu-adjust">
     <span class="font-divider"><!--{$book_item.title_name}--></span>
     <aside class="aside-btn-position"><a href="/manga/genrelist/saspense" data-role="button" data-mini="true" data-iconpos="top" data-inline="true" data-theme="a" data-icon="search" class="aside-btn"></a></aside>
   </div>
 
   <!--{elseif $book_item.genre_id == "03"}-->
-  <div class="box otona genre-menu-adjust">
+  <div class="box otona ganre-menu-adjust">
     <span class="font-divider"><!--{$book_item.title_name}--></span>
     <aside class="aside-btn-position"><a href="/manga/genrelist/otona" data-role="button" data-mini="true" data-iconpos="top" data-inline="true" data-theme="a" data-icon="otona" class="aside-btn"></a></aside>
   </div>
 
   <!--{elseif $book_item.genre_id == "06"}-->
-  <div class="box eat genre-menu-adjust">
+  <div class="box eat ganre-menu-adjust">
     <span class="font-divider"><!--{$book_item.title_name}--></span>
     <aside class="aside-btn-position"><a href="/manga/genrelist/eat" data-role="button" data-mini="true" data-iconpos="top" data-inline="true" data-theme="a" data-icon="eat" class="aside-btn"></a></aside>
   </div>
 
   <!--{elseif $book_item.genre_id == "07"}-->
-  <div class="box sports genre-menu-adjust">
+  <div class="box sports ganre-menu-adjust">
     <span class="font-divider"><!--{$book_item.title_name}--></span>
     <aside class="aside-btn-position"><a href="/manga/genrelist/sports" data-role="button" data-mini="true" data-iconpos="top" data-inline="true" data-theme="a" data-icon="sports" class="aside-btn"></a></aside>
   </div>
 
   <!--{elseif $book_item.genre_id == "08"}-->
-  <div class="box dorama genre-menu-adjust">
+  <div class="box dorama ganre-menu-adjust">
     <span class="font-divider"><!--{$book_item.title_name}--></span>
     <aside class="aside-btn-position"><a href="/manga/genrelist/dorama" data-role="button" data-mini="true" data-iconpos="top" data-inline="true" data-theme="a" data-icon="dorama" class="aside-btn"></a></aside>
   </div>
@@ -85,8 +87,8 @@
 </ul>
 
 <div class="ui-grid-a">
-    <div class="ui-block-a"><a href="#edit-page-pass" data-rel="popup" data-role="button" data-mini="true" data-theme="c" data-iconpos="left" data-icon="gear"><span>ページ編集</span></a></div>
-    <div class="ui-block-b"><a href="#add-page" data-rel="popup" data-role="button" data-mini="true" data-theme="c" data-iconpos="left" data-icon="forward"><span>ページ追加</span></a></div>
+    <div class="ui-block-a"><a href="#edit-page-pass" data-rel="popup" data-position-to="window" data-role="button" data-mini="true" data-theme="c" data-iconpos="left" data-icon="gear"><span>ページ編集</span></a></div>
+    <div class="ui-block-b"><a href="#add-page" data-rel="popup" data-role="button" data-position-to="window" data-mini="true" data-theme="c" data-iconpos="left" data-icon="forward"><span>ページ追加</span></a></div>
 </div>
 
 <!--{foreachelse}-->
@@ -112,14 +114,14 @@
   <li><a href="/img/sp/upload/2_1.jpg" data-ajax="false"><img src="/img/sp/upload/2_1.jpg" alt="Kamui 009" /></a></li>  
 </ul>
 
+  <form name="form" action="/manga/do_upload" method="POST" ENCTYPE="MULTIPART/FORM-DATA" data-ajax="false">
+    <label for="img-upload01">★画像アップロード</label>
+    <input type="file" name="img-upload01"/>
+    <input type="submit" value="作成する!!" data-ajax="false">
+  </form>
+
+
 </div><!--/padding-content -->
-
-
-
-</section><!--/main-contents-->
-<!--{include file="inc/menu_info_inc.tpl"}-->
-</div><!--/data-role="content"-->
-<!--{include file="inc/footer_inc.tpl"}-->
 
 <div data-role="popup" id="edit-page-pass">
   <a href="#" data-rel="back" data-role="button" data-theme="c" data-icon="delete" class="ui-btn-right">Close</a>
@@ -150,11 +152,11 @@
 <div data-role="popup" id="add-page">
   <a href="#" data-rel="back" data-role="button" data-theme="c" data-icon="delete" class="ui-btn-right">Close</a>
     <section class="padding-content">
-  <form name="form" action="/manga/do_upload" method="POST" ENCTYPE="MULTIPART/FORM-DATA" data-ajax="false">
+  <form name="form" action="/manga/page_add" method="POST" ENCTYPE="MULTIPART/FORM-DATA" data-ajax="false">
     <label for="img-upload01">★追加する画像を選択してください</label>
     <input type="file" name="img-upload01"/>
-    <p>★編集パスワードを設定する場合は入力してください<br>※設定しなかった場合は誰でも編集可能になります。</p>
-    <input type="password" name="edit_pass" id="edit-pass" value="" maxlength="8" placeholder="編集用パスワード"/>
+    <label for="edit_pass">★編集パスワードを設定する場合は入力してください<br>※設定しなかった場合は誰でも編集可能になります。</label>
+    <input type="password" name="edit_pass" id="edit_pass" value="" maxlength="8" placeholder="編集用パスワード"/>
     <input type="hidden" name="book" value="<!--{foreach from=$arrBook item=book_item}--><!--{$book_item.book_id}--><!--{/foreach}-->" />
     <input type="submit" value="ページを追加!!" data-theme="c" data-iconpos="left" data-icon="forward"/>
   </form>
@@ -164,14 +166,25 @@
 <div data-role="popup" id="edit-book-pass">
   <a href="#" data-rel="back" data-role="button" data-theme="c" data-icon="delete" class="ui-btn-right">Close</a>
     <section class="padding-content">
-      <p>★編集パスワードを入力してください</p>
         <form name="form" action="/manga/book_edit" method="POST" ENCTYPE="MULTIPART/FORM-DATA" data-ajax="false">
+        <p>★編集又は削除を選択してください</p>
+        <!--{foreach from=$arrBook item=book_item}-->
+        <!--{if $book_item.edit_pass == "0"}-->
+        <!--{else}-->
+          <p>★編集パスワードを入力してください</p>
           <input type="password" name="edit_pass" id="edit-pass" value="" maxlength="8" placeholder="編集用パスワード"/>
+        <!--{/if}-->
+        <!--{/foreach}-->
           <input type="hidden" name="book" value="<!--{foreach from=$arrBook item=book_item}--><!--{$book_item.book_id}--><!--{/foreach}-->" />
           <div class="ui-grid-a">
-            <div class="ui-block-a"><input type="submit" value="編集する" data-theme="a" data-iconpos="left" data-icon="gear"/></div>
-            <div class="ui-block-b"><input type="submit" value="削除する" data-theme="c" data-iconpos="left" data-icon="alert"/></div>
+            <div class="ui-block-a"><input type="submit" value="編集する" name="edit" data-theme="a" data-iconpos="left" data-icon="gear"/></div>
+            <div class="ui-block-b"><input type="submit" value="削除する" name="del" data-theme="c" data-iconpos="left" data-icon="alert"/></div>
           </div>
        </form>
     </section>
 </div>
+
+</section><!--/main-contents-->
+<!--{include file="inc/menu_info_inc.tpl"}-->
+</div><!--/data-role="content"-->
+<!--{include file="inc/footer_inc.tpl"}-->

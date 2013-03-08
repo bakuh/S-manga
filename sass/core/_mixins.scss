@@ -1,0 +1,25 @@
+@mixin line-top($alpha1: .2, $alpha2: .3){
+  border-top: 1px solid rgba(0, 0, 0, $alpha1);
+  @include box-shadow(rgba(255, 255, 255, $alpha2) 0 1px 0 inset);
+}
+
+@mixin line-bottom($alpha1: .2, $alpha2: .3){
+  border-bottom: 1px solid rgba(0, 0, 0, $alpha1);
+  @include box-shadow(rgba(255, 255, 255, $alpha2)0 1px 0);
+}
+
+@mixin line-left($alpha1: .2, $alpha2: .3){
+  border-left: 1px solid rgba(0, 0, 0, $alpha1);
+  @include box-shadow (rgba(255, 255, 255, $alpha2) -1px 0 0);
+}
+
+@mixin line-right($alpha1: .2, $alpha: .3){
+  border-right: 1px solid rgba(0, 0, 0, $alpha1);
+  @include box-shadow(rgba(255, 255, 255, $alpha2) -1px 0 0 inset);
+}
+
+@mixin font-bold-color($color1, $color2){
+  font-weight: bold;
+  color:$color1;
+  text-shadow: 1px 1px 3px $color2;
+}
